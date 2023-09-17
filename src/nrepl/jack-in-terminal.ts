@@ -94,9 +94,10 @@ export class JackInTerminal implements vscode.Pseudoterminal {
           const [_, port1, host1, host2, port2, port3] = msg.match(
             /(?:Started nREPL server|nREPL server started)[^\r\n]+?(?:(?:on port (\d+)(?: on host (\S+))?)|([^\s/]+):(\d+))|.*?(\d+) TODO/
           );
+          const host = host1 ? host1 : host2 ? host2 : '127.0.0.1';
           this.whenREPLStarted(
             this.process,
-            host1 ? host1 : host2 ? host2 : 'localhost',
+            host === 'localhost' ? '127.0.0.1' : host,
             port1 ? port1 : port2 ? port2 : port3
           );
         }
