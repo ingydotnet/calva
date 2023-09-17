@@ -656,9 +656,9 @@ async function makeCljsSessionClone(session, repl: ReplType, projectTypeName: st
 
 async function promptForNreplUrlAndConnect(port, connectSequence: ReplConnectSequence) {
   const url = await vscode.window.showInputBox({
-    placeHolder: 'Enter existing nREPL hostname:port here...',
-    prompt: "Add port to nREPL if localhost, otherwise 'hostname:port'",
-    value: 'localhost:' + (port ? port : ''),
+    placeHolder: 'nREPL host:port to connect to',
+    prompt: "Add port to nREPL if 127.0.0.1, otherwise 'host:port'",
+    value: '127.0.0.1:' + (port ? port : ''),
     ignoreFocusOut: true,
   });
   // state.reset(); TODO see if this should be done
@@ -711,7 +711,7 @@ export async function connect(
       }
     }
     if (port) {
-      hostname = hostname !== undefined ? hostname : 'localhost';
+      hostname = hostname !== undefined ? hostname : '127.0.0.1';
       outputWindow.appendLine(`; Using host:port ${hostname}:${port} ...`);
       if (isAutoConnect) {
         setStateValue('hostname', hostname);
