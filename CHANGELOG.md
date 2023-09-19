@@ -5,6 +5,8 @@ Changes to Calva.
 ## [Unreleased]
 
 - Fix: [Command to run tests for namespace uses user and user-test namespaces when cursor is in ns form](https://github.com/BetterThanTomorrow/calva/issues/2309)
+- Workaround: [calva/vscode wrongly assumes nrepl started at ::1 (ipv6)](https://github.com/BetterThanTomorrow/calva/issues/2310)
+
 
 ## [2.0.388] - 2023-08-31
 
