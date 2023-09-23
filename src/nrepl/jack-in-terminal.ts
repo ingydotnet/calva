@@ -35,6 +35,7 @@ export class JackInTerminal implements vscode.Pseudoterminal {
   ) {}
 
   open(initialDimensions: vscode.TerminalDimensions | undefined): void {
+    console.log('BOOM! 2317 starting the Jack-in terminal');
     outputWindow.appendLine(`; Starting Jack-in Terminal: ${createCommandLine(this.options)}`);
     this.writeEmitter.fire(
       'This is a pseudo terminal, only used for hosting the Jack-in REPL process. It takes no input.\r\nPressing ctrl+c with this terminal focused, killing this terminal, or closing/reloading the VS Code window will all stop/kill the Jack-in REPL process.\r\n\r\n'
@@ -80,9 +81,11 @@ export class JackInTerminal implements vscode.Pseudoterminal {
         shell: this.options.useShell,
       });
       this.process.on('exit', (status) => {
+        console.log('BOOM! 2317 Jack-in process exited', status);
         this.writeEmitter.fire(`Jack-in process exited. Status: ${status}\r\n`);
       });
       this.process.stdout.on('data', (data) => {
+        console.log('BOOM! 2317 stdout data from Jack-in process', data);
         const msg = this.dataToString(data);
         this.writeEmitter.fire(`${msg}\r\n`);
         // Started nREPL server at 127.0.0.1:1337
