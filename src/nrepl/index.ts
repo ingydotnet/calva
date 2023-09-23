@@ -129,6 +129,7 @@ export class NReplClient {
    * Create a new NRepl client
    */
   static create(opts: { host: string; port: number; onError: (e) => void }) {
+    console.log('BOOM 2317 Creating client', opts);
     return new Promise<NReplClient>((resolve, reject) => {
       const socket = net.createConnection(opts, () => {
         const nsId = client.nextId;
