@@ -173,6 +173,7 @@ export class NReplClient {
         });
         const msg = { op: 'eval', code: '*ns*', id: nsId };
         log(msg, Direction.ClientToServer);
+        console.log('BOOM 2317 Sending', msg);
         client.encoder.write(msg);
       });
       const client = new NReplClient(socket, opts.onError);
